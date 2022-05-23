@@ -5,11 +5,10 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 
 class CustomUser(AbstractUser):
-    username = None
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['username']
 
     objects = CustomUserManager()
 

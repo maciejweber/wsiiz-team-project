@@ -1,4 +1,4 @@
-from rest_framework import parsers, renderers
+from rest_framework import parsers, renderers, status
 from rest_framework.authtoken.models import Token
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.response import Response
@@ -6,7 +6,7 @@ from rest_framework.schemas import ManualSchema
 from rest_framework.schemas import coreapi as coreapi_schema
 from rest_framework.views import APIView
 
-from .serializers import LoginSerializer
+from .serializers import LoginSerializer, RegisterSerializer
 
 class LoginView(APIView):
     throttle_classes = ()
@@ -57,3 +57,13 @@ class LoginView(APIView):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
+
+
+class RegisterView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
