@@ -51,7 +51,7 @@ THIRD_PARTY_APPS = [
     'rest_framework.authtoken'
 ]
 
-LOCAL_APPS = ['users']
+LOCAL_APPS = ['users', 'estates', 'posts', 'comments']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -64,6 +64,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 ROOT_URLCONF = 'core.urls'
 
