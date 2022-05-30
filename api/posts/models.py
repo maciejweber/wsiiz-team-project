@@ -17,3 +17,6 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title + ' - ' + self.estate.name
+
+    class Meta:
+        ordering = ['created_on']
