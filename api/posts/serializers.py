@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework.fields import CurrentUserDefault
 
 
 from .models import Post
@@ -56,3 +57,26 @@ class PostDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id','title','content','estate','category','author','likes','dislikes']
+
+class PostLikeSerializer(serializers.ModelSerializer):
+    likes = UserSerializer(many=True, read_only=True)
+    
+
+    class Meta:
+        model = Post
+        fields = ['likes']
+    
+    def update(self, instance, validated_data):
+        request_user = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            request_user = request.user
+
+        instance = super(PostLikeSerializer, self).update(instance, validated_data)
+
+        if request_user in instance.likes.all():
+            instance.likes.remove(request_user)
+        else:
+            instance.likes.add(request_user)
+
+        return instance

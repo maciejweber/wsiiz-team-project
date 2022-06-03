@@ -14,7 +14,6 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     created_on = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, blank=True, related_name='comment_likes')
-    dislikes = models.ManyToManyField(User, blank=True, related_name='comment_dislikes')
     # image
 
     def __str__(self) -> str:

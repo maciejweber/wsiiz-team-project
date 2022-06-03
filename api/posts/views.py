@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import PostSerializer
+from .serializers import PostSerializer, PostLikeSerializer
 from .models import Post
 
 class PostListView(APIView):
@@ -32,19 +32,37 @@ class PostDetailView(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = PostSerializer(snippet)
+        post = self.get_object(pk)
+        serializer = PostSerializer(post)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = PostSerializer(snippet, data=request.data)
+        post = self.get_object(pk)
+        serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        snippet.delete()
+        post = self.get_object(pk)
+        post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class PostLikeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404
+    
+    def put(self, request, pk, format=None):
+        post = self.get_object(pk)
+        context = {'request': request} 
+        serializer = PostLikeSerializer(post, data=request.data, context=context)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
