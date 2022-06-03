@@ -19,16 +19,13 @@ class PostSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
     likes_count = serializers.SerializerMethodField('get_likes_count')
-    dislikes_count = serializers.SerializerMethodField('get_dislikes_count')
 
     def get_likes_count(self, obj):
         return obj.likes.count()
-    def get_dislikes_count(self, obj):
-        return obj.dislikes.count()
 
     class Meta:
         model = Post
-        fields = ['id','title','estate','category','author','created_on','likes_count','dislikes_count']
+        fields = ['id','title','estate','category','author','created_on','likes_count',]
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -44,19 +41,15 @@ class PostDetailSerializer(serializers.ModelSerializer):
     estate = EstateSerializer()
     author = UserSerializer() 
     likes = UserSerializer(read_only=True, many=True)
-    dislikes = UserSerializer(read_only=True, many=True)
     likes_count = serializers.SerializerMethodField('get_likes_count')
-    dislikes_count = serializers.SerializerMethodField('get_dislikes_count')
 
     def get_likes_count(self, obj):
         return obj.likes.count()
-    def get_dislikes_count(self, obj):
-        return obj.dislikes.count()
 
 
     class Meta:
         model = Post
-        fields = ['id','title','content','estate','category','author','likes','dislikes']
+        fields = ['id','title','content','estate','category','author','likes']
 
 class PostLikeSerializer(serializers.ModelSerializer):
     likes = UserSerializer(many=True, read_only=True)
