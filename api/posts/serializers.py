@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.fields import CurrentUserDefault
 
 
 from .models import Post
@@ -9,7 +8,6 @@ from categories.models import Category
 
 from estates.serializers import EstateSerializer
 from users.serializers import UserSerializer
-from categories.serializers import CategorySerializer
 
 User = get_user_model()
 
