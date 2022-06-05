@@ -8,7 +8,7 @@ User = get_user_model()
 class Comment(models.Model):
     text = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

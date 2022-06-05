@@ -6,7 +6,7 @@ from rest_framework.schemas import ManualSchema
 from rest_framework.schemas import coreapi as coreapi_schema
 from rest_framework.views import APIView
 
-from .serializers import LoginSerializer, RegisterSerializer
+from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 
 class LoginView(APIView):
     throttle_classes = ()
@@ -67,3 +67,17 @@ class RegisterView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserView(APIView):
+
+    def get(self, request, format=None):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+
+class LogoutView(APIView):
+
+    def post(self, request, format=None):
+        request.user.auth_token.delete()
+        return Response(status=status.HTTP_200_OK)

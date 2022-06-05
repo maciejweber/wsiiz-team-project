@@ -3,11 +3,13 @@ from rest_framework import serializers
 
 
 from .models import Post
+from comments.models import Comment
 from estates.models import Estate
 from categories.models import Category
 
 from estates.serializers import EstateSerializer
 from users.serializers import UserSerializer
+from comments.serializers import CommentDetailSerializer
 
 User = get_user_model()
 
@@ -40,19 +42,24 @@ class PostDetailSerializer(serializers.ModelSerializer):
     author = UserSerializer() 
     likes = UserSerializer(read_only=True, many=True)
     likes_count = serializers.SerializerMethodField('get_likes_count')
+    comments = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Post
+        fields = ['id','title','content','estate','category','author','likes','likes_count', 'comments']
 
     def get_likes_count(self, obj):
         return obj.likes.count()
 
+    def get_comments(self, obj):
+        comments_qs = Comment.objects.filter(post=obj)
+        comments = CommentDetailSerializer(comments_qs, many=True).data
+        return comments 
 
-    class Meta:
-        model = Post
-        fields = ['id','title','content','estate','category','author','likes']
 
 class PostLikeSerializer(serializers.ModelSerializer):
     likes = UserSerializer(many=True, read_only=True)
     
-
     class Meta:
         model = Post
         fields = ['likes']
