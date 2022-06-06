@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import parsers, renderers, status
 from rest_framework.authtoken.models import Token
 from rest_framework.compat import coreapi, coreschema
@@ -7,6 +9,8 @@ from rest_framework.schemas import coreapi as coreapi_schema
 from rest_framework.views import APIView
 
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
+
+User = get_user_model()
 
 class LoginView(APIView):
     throttle_classes = ()
