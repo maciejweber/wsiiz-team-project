@@ -64,6 +64,65 @@ class LoginView(APIView):
 
 
 class RegisterView(APIView):
+    throttle_classes = ()
+    permission_classes = ()
+    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    serializer_class = RegisterSerializer
+
+    if coreapi_schema.is_enabled():
+        schema = ManualSchema(
+            fields=[
+                coreapi.Field(
+                    name="email",
+                    required=True,
+                    location='form',
+                    schema=coreschema.String(
+                        title="Email",
+                        description="Valid email for register",
+                    ),
+                ),
+                coreapi.Field(
+                    name="username",
+                    required=True,
+                    location='form',
+                    schema=coreschema.String(
+                        title="Username",
+                        description="Valid username for register",
+                    ),
+                ),
+                coreapi.Field(
+                    name="password",
+                    required=True,
+                    location='form',
+                    schema=coreschema.String(
+                        title="Password",
+                        description="Valid password for register",
+                    ),
+                ),
+                coreapi.Field(
+                    name="password_confirm",
+                    required=True,
+                    location='form',
+                    schema=coreschema.String(
+                        title="Password Confirm",
+                        description="Valid password_confirm for register",
+                    ),
+                ),
+            ],
+            encoding="application/json",
+        )
+
+    def get_serializer_context(self):
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs['context'] = self.get_serializer_context()
+        return self.serializer_class(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         serializer = RegisterSerializer(data=request.data)

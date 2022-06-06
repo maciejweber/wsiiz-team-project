@@ -54,7 +54,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    'corsheaders'
+    'corsheaders',
+    'drf_yasg',
 ]
 
 LOCAL_APPS = ['users', 'estates', 'posts', 'comments', 'categories']
@@ -82,7 +83,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
-    ]
+    ],
 }
 
 ROOT_URLCONF = 'core.urls'
@@ -157,7 +158,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
