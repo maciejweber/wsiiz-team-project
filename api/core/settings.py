@@ -54,8 +54,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    'corsheaders',
-    'drf_yasg',
+    'corsheaders'
 ]
 
 LOCAL_APPS = ['users', 'estates', 'posts', 'comments', 'categories']
