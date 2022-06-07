@@ -15,6 +15,7 @@ User = get_user_model()
 
 class PostSerializer(serializers.ModelSerializer):
     title = serializers.CharField()
+    content = serializers.CharField(write_only=True)
     estate = serializers.PrimaryKeyRelatedField(queryset=Estate.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -25,7 +26,11 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id','title','estate','category','author','created_on','likes_count',]
+        fields = ['id','title', 'content','estate','category','author','created_on','likes_count',]
+        # extra_kwargs = {
+        #     'content': {'write_only': True},
+        # }
+
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
