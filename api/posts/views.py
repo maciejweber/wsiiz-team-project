@@ -26,6 +26,7 @@ class EventFilter(filters.FilterSet):
         return queryset.filter(category__name__contains=category)
 
 class PostListView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filter_class = EventFilter
