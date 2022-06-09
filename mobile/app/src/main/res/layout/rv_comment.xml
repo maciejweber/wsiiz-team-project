@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/comment_border"
+    android:layout_margin="5dp">
+
+    <!--    Profile picture -->
+    <ImageView
+        android:id="@+id/profileIV"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_profile_gray" />
+    <!--    User name   -->
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/profileIV"
+        android:text="User Name"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:fontFamily="@font/alata"/>
+    <!--    Date and time-->
+    <!--    Comment body -->
+
+    <TextView
+        android:id="@+id/dateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/profileIV"
+        android:layout_below="@id/nameTV"
+        android:fontFamily="@font/alata"
+
+        android:layout_marginTop="5dp"
+        android:text="dd/MM/yyyy"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTV"
+        android:orientation="horizontal"
+        android:layout_toEndOf="@id/profileIV"
+        android:weightSum="1"/>
+
+    <TextView
+        android:id="@+id/contentTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileIV"
+        android:layout_marginStart="3dp"
+        android:fontFamily="@font/alata"
+        android:text="body of comment"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+</RelativeLayout>
