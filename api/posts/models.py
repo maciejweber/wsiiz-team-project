@@ -20,4 +20,4 @@ class Post(models.Model):
         return self.title + ' - ' + self.estate.name
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['-created_on']

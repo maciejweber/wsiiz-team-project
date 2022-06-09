@@ -27,15 +27,13 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id','title', 'content','estate','category','author','created_on','likes_count',]
-        # extra_kwargs = {
-        #     'content': {'write_only': True},
-        # }
 
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep['estate'] = instance.estate.name
-        rep['category'] = EstateSerializer(instance.category).data
+        # rep['category'] = EstateSerializer(instance.category).data
+        rep['category'] = instance.category.name
         rep['author'] = instance.author.username
         return rep
 
@@ -60,6 +58,13 @@ class PostDetailSerializer(serializers.ModelSerializer):
         comments_qs = Comment.objects.filter(post=obj)
         comments = CommentDetailSerializer(comments_qs, many=True).data
         return comments 
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['estate'] = instance.estate.name
+        rep['category'] = instance.category.name
+        rep['author'] = instance.author.username
+        return rep
 
 
 class PostLikeSerializer(serializers.ModelSerializer):
