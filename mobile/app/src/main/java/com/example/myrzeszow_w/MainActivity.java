@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loadposts() {
+    public void loadposts() {
         progressDialog.show();
 
         url = "http://moj-rzeszow.herokuapp.com/api/posts/";
@@ -102,9 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 // try/catch for json data
                 try {
                     //get data
-//                    JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = new JSONArray(response);
-//                    JSONArray jsonArray = jsonObject.getJSONArray("JSON");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
@@ -114,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             String estate = jsonObject1.getString("estate");
                             String created_on = jsonObject1.getString("created_on");
                             String likes_count = jsonObject1.getString("likes_count");
-                            String category = jsonObject1.getJSONObject("category").getString("name");
+                            String category = jsonObject1.getString("category");
 
                             //set data
                             ModelPost modelPost = new ModelPost(

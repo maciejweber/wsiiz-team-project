@@ -75,14 +75,14 @@ public class AddPostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addNewPost();
-//                Intent intent = new Intent(AddPostActivity.this, MainActivity.class);
-//                startActivity(intent);
 
+                //go back to main activity and refresh
+                Intent intent = new Intent(AddPostActivity.this, MainActivity.class);
+                startActivity(intent);
 
     }
 
     private void addNewPost() {
-
 
         String title = postTitleEdit.getText().toString();
         String body = postBodyEdit.getText().toString();
@@ -90,7 +90,6 @@ public class AddPostActivity extends AppCompatActivity {
 //        String category = categorySpinner.getSelectedItem().toString();\
         int estate =1;
         int category = 1;
-
 //       long estate = estateSpinner.getSelectedItemId();
 //       long category = categorySpinner.getSelectedItemId();
 
@@ -101,6 +100,7 @@ public class AddPostActivity extends AppCompatActivity {
             jsonObject.put("title", title);
             jsonObject.put("estate", estate);
             jsonObject.put("category", category);
+            jsonObject.put("content", body);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -128,39 +128,6 @@ public class AddPostActivity extends AppCompatActivity {
                 hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
                 return hashMap;
             }
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Toast.makeText(AddPostActivity.this, "Response "+response.trim(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(AddPostActivity.this, "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        }){
-//            @NonNull
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError{
-//                HashMap<String, String> hashMap = new HashMap<String, String>();
-//                hashMap.put("Context-Type", "application/json");
-//                hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
-//                hashMap.put("title", title);
-//                hashMap.put("estate", test);
-//                hashMap.put("category",);
-//                return hashMap;
-//            }
-//
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("Content-Type", "text/plain; charset=utf-8");
-//                params.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
-//                params.put("title", title);
-////                params.put("estate", estate);
-////                params.put("category", category);
-//                return params;
 
         };
         RequestQueue requestQueue = Volley.newRequestQueue(AddPostActivity.this);

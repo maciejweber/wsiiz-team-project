@@ -113,8 +113,8 @@ public class PostContentActivity extends AppCompatActivity {
 
                     String title = jsonObject.getString("title");
                     String id = jsonObject.getString("id");
-                    String estate = jsonObject.getJSONObject("estate").getString("name");
-                    String authorName = jsonObject.getJSONObject("author").getString("username");
+                    String estate = jsonObject.getString("estate");
+                    String authorName = jsonObject.getString("author");
                     String content = jsonObject.getString("content");
                     String category = jsonObject.getString("category");
                     //String created_on = jsonObject.getString("created_on");
