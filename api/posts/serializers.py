@@ -15,6 +15,7 @@ User = get_user_model()
 
 class PostSerializer(serializers.ModelSerializer):
     title = serializers.CharField()
+    content = serializers.CharField(write_only=True)
     estate = serializers.PrimaryKeyRelatedField(queryset=Estate.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -25,12 +26,14 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id','title','estate','category','author','created_on','likes_count',]
+        fields = ['id','title', 'content','estate','category','author','created_on','likes_count',]
+
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep['estate'] = instance.estate.name
-        rep['category'] = EstateSerializer(instance.category).data
+        # rep['category'] = EstateSerializer(instance.category).data
+        rep['category'] = instance.category.name
         rep['author'] = instance.author.username
         return rep
 
@@ -55,6 +58,13 @@ class PostDetailSerializer(serializers.ModelSerializer):
         comments_qs = Comment.objects.filter(post=obj)
         comments = CommentDetailSerializer(comments_qs, many=True).data
         return comments 
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['estate'] = instance.estate.name
+        rep['category'] = instance.category.name
+        rep['author'] = instance.author.username
+        return rep
 
 
 class PostLikeSerializer(serializers.ModelSerializer):
