@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
 
-        emailEditText_login = findViewById(R.id.postTitleEdit);
+        emailEditText_login = findViewById(R.id.postCommentEdit);
         passwordEditText_login = findViewById(R.id.postBodyEdit);
 
         forgotTextView = findViewById(R.id.forgotTextView);

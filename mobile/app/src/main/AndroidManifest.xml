@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyRzeszow_w"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddCommentActivity"
+            android:exported="false" />
+        <activity
             android:name=".PostContentActivity"
             android:exported="false" />
         <activity

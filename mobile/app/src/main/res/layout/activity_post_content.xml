@@ -32,6 +32,7 @@
         android:text="Post title"
         android:fontFamily="@font/alata"
         android:textStyle="bold"/>
+
     <!--Author info and date-->
     <TextView
         android:id="@+id/contentPublished"
@@ -93,20 +94,38 @@
         />
 <!--    Comments-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp"
+            >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingStart="5dp"
-        android:text="Komentarze: "
-        android:fontFamily="@font/alata"
-        android:background="@color/white"
-        android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/KomentarzeTV"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="20sp"
+                android:padding="5dp"
+
+                android:text="Komentarze: "
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:fontFamily="@font/alata"
+                android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/addComment"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_add_white50"
+                />
+
+        </LinearLayout>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentsRV"
