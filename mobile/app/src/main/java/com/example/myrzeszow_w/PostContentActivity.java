@@ -171,7 +171,7 @@ public class PostContentActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
 //                hashMap.put("Context-Type", "application/json");
-                hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
+                hashMap.put("Authorization","Token 06f41b40338b2817554825a93bf630a773c15451");
                 return hashMap;
             }
         };

@@ -67,8 +67,6 @@ public class AddCommentActivity extends AppCompatActivity {
         authorSpinner.setAdapter(authorsAdapter);
         //endregion
 
-//        postId = getIntent().getStringExtra("postId");
-
 
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,17 +88,13 @@ public class AddCommentActivity extends AppCompatActivity {
     private void addNewComment() {
 
         String text = postCommentEdit.getText().toString();
-//        long post = Integer.parseInt(postId);\
         long post = Integer.parseInt(idposta);
-
-        //        long author = authorSpinner.getSelectedItemId()+1;
         String url = "http://moj-rzeszow.herokuapp.com/api/comments/";
 
         JSONObject jsonObject = new JSONObject();
         try{
             jsonObject.put("text", text);
             jsonObject.put("post", post);
-//            jsonObject.put("author", author);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -124,7 +118,6 @@ public class AddCommentActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-//                hashMap.put("Context-Type", "application/json");
                 hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
                 return hashMap;
             }
