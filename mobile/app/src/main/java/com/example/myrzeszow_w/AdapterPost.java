@@ -1,5 +1,6 @@
 package com.example.myrzeszow_w;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -48,7 +49,6 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.HolderPost> {
         String category = model.getCategory();
 
         //formatting date
-
         String gmtDate = created_on;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //   2022-06-06T06:53:00-07:00
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy K:mm a"); // 06/06/2022 15:53
@@ -72,7 +72,6 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.HolderPost> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PostContentActivity.class);
-//                intent.putExtra("Authorization", "Token 06f41b40338b2817554825a93bf630a773c15451");
                 intent.putExtra("postId", id);
                 context.startActivity(intent);
             }

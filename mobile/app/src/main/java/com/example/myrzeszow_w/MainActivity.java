@@ -56,13 +56,18 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAIN_TAG";
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         postsRV = findViewById(R.id.postsRV);
         addBtn = findViewById(R.id.addBtn);
-
 
         //progress dialog
         progressDialog = new ProgressDialog(this);
@@ -72,19 +77,22 @@ public class MainActivity extends AppCompatActivity {
         postArrayList.clear();
 
         loadposts();
+        String token = getIntent().getStringExtra("token");
+
 
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddPostActivity.class);
+                intent.putExtra("token", token);
                 startActivity(intent);
             }
         });
 
     }
 
-    private void loadposts() {
+    public void loadposts() {
         progressDialog.show();
 
         url = "http://moj-rzeszow.herokuapp.com/api/posts/";
@@ -102,9 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 // try/catch for json data
                 try {
                     //get data
-//                    JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = new JSONArray(response);
-//                    JSONArray jsonArray = jsonObject.getJSONArray("JSON");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             String estate = jsonObject1.getString("estate");
                             String created_on = jsonObject1.getString("created_on");
                             String likes_count = jsonObject1.getString("likes_count");
-                            String category = jsonObject1.getJSONObject("category").getString("name");
+                            String category = jsonObject1.getString("category");
 
                             //set data
                             ModelPost modelPost = new ModelPost(
@@ -154,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap header = new HashMap();
+                String token = getIntent().getStringExtra("token");
+//                header.put("Authorization", "Token "+token);
+                //hardcoded for now, will be changed
                 header.put("Authorization", "Token 06f41b40338b2817554825a93bf630a773c15451");
                 return header;
             }

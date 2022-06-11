@@ -23,11 +23,11 @@
 
 
     <TextView
-        android:id="@+id/newPostTextView"
+        android:id="@+id/newCommentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Stwórz nowy post"
+        android:text="Dodaj komentarz"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         android:id="@+id/postCommentEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Podaj tytuł"
+        android:hint="Napisz co masz na myśli"
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
@@ -51,38 +51,21 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contentText"
-         />
-
-    <EditText
-        android:id="@+id/postBodyEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Napisz co masz na myśli"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_margin="10dp"
-        android:maxLines="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postContentText"
         />
-<!--        app:layout_constraintWidth_percent=".8" -->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnComment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button_bg"
-        android:text="Utwórz"
+        android:text="Dodaj"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/authorSpinner"
         app:layout_constraintWidth_percent=".65" />
 
     <Spinner
@@ -98,32 +81,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorName" />
 
-    <Spinner
-        android:id="@+id/categorySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints="Kategorie"
-        android:layout_marginTop="10dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintTop_toBottomOf="@+id/categoryName" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="102dp" />
+        app:layout_constraintGuide_end="552dp" />
 
     <TextView
         android:id="@+id/contentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Tytuł postu"
+        android:text="Treść komentarza"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,46 +102,18 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:id="@+id/postContentText"
+        android:id="@+id/authorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:fontFamily="@font/alata"
-        android:text="Treść postu"
+        android:text="Autor"
         android:textColor="@color/black"
+        android:layout_marginTop="50dp"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postCommentEdit" />
-
-    <TextView
-        android:id="@+id/authorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/alata"
-        android:text="Dzielnica"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postBodyEdit" />
-
-    <TextView
-        android:id="@+id/categoryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alata"
-        android:text="Kategoria"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authorSpinner" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
