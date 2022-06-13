@@ -8,12 +8,11 @@ from users.serializers import UserSerializer
 class CommentSerializer(serializers.ModelSerializer):
     text = serializers.CharField() 
     post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
-    author = UserSerializer()
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Comment
         fields =['text', 'post', 'author']
-        read_only_fields = ['author']
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
