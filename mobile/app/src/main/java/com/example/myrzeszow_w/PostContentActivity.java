@@ -38,11 +38,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
-//TODO: dodac search GET request
-//TODO: zmienic author w "comments" na String zamiast ID
-
-
 public class PostContentActivity extends AppCompatActivity {
 
     private TextView titleTV, publishedInfo, regionTV, categoryTV, idposta;
@@ -147,7 +142,7 @@ public class PostContentActivity extends AppCompatActivity {
                     publishedInfo.setText("User: " + authorName);
                     regionTV.setText(estate);
                     categoryTV.setText(category);
-                    webView.loadDataWithBaseURL(null,content,"text/html", ENCODING, null);
+                    webView.loadDataWithBaseURL(null,content,"text/html", "UTF-8", null);
 
                     loadComments();
 
@@ -171,7 +166,7 @@ public class PostContentActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
 //                hashMap.put("Context-Type", "application/json");
-                hashMap.put("Authorization","Token 06f41b40338b2817554825a93bf630a773c15451");
+                hashMap.put("Authorization","Token 317ea0bde92de12d37799221b17a9959fd3df8b1");
                 return hashMap;
             }
         };
@@ -208,9 +203,7 @@ public class PostContentActivity extends AppCompatActivity {
                                 ""+created_on,
                                 ""+author
                         );
-
                         commentArrayList.add(modelComment);
-
                         }
 
                     adapterComment = new AdapterComment(PostContentActivity.this, commentArrayList);
@@ -234,7 +227,7 @@ public class PostContentActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
 //                hashMap.put("Context-Type", "application/json");
-                hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
+                hashMap.put("Authorization","Token 317ea0bde92de12d37799221b17a9959fd3df8b1");
                 return hashMap;
             }
         };

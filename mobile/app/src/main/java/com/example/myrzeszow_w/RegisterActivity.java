@@ -55,10 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
                     userRegister();
                     startActivity(intent2);
                 }
-
             }
         });
-
     }
 
     private void userRegister() {
@@ -70,12 +68,12 @@ public class RegisterActivity extends AppCompatActivity {
         String url = "http://moj-rzeszow.herokuapp.com/api/auth/register/";
 
         JSONObject object = new JSONObject();
-        try{
-            object.put("email", email);
-            object.put("username", username);
-            object.put("password", password);
-            object.put("password_confirm", password_confirm);
-        } catch (JSONException e) {
+            try{
+                object.put("email", email);
+                object.put("username", username);
+                object.put("password", password);
+                object.put("password_confirm", password_confirm);
+            } catch (JSONException e) {
             e.printStackTrace();
         }
 

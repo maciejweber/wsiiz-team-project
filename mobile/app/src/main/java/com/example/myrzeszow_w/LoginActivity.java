@@ -116,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText_login = findViewById(R.id.postCommentEdit);
         passwordEditText_login = findViewById(R.id.postBodyEdit);
 
-        forgotTextView = findViewById(R.id.forgotTextView);
         titleTextView = findViewById(R.id.newPostTextView);
 
         logoImage = findViewById(R.id.logoImage);

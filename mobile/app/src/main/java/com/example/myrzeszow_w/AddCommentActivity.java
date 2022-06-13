@@ -55,16 +55,9 @@ public class AddCommentActivity extends AppCompatActivity {
         contentText = findViewById(R.id.contentText);
         authorName = findViewById(R.id.authorName);
         postCommentEdit = findViewById(R.id.postCommentEdit);
-        authorSpinner = findViewById(R.id.authorSpinner);
         btnComment = findViewById(R.id.btnComment);
 
         idposta = getIntent().getStringExtra("postId");
-        //endregion
-
-        //region populating spinners
-        List<String> authors = Arrays.asList("ttest", "test",  "testowyuzytkownik", "maciej");
-        ArrayAdapter<String> authorsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, authors);
-        authorSpinner.setAdapter(authorsAdapter);
         //endregion
 
 
@@ -82,7 +75,6 @@ public class AddCommentActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void addNewComment() {
@@ -118,7 +110,7 @@ public class AddCommentActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("Authorization","Token ca4d876643c57786168849699a9ac4f651d6832c");
+                hashMap.put("Authorization","Token 317ea0bde92de12d37799221b17a9959fd3df8b1");
                 return hashMap;
             }
         };
